@@ -29,8 +29,8 @@ public class OrdenController {
 
     //listarOrden
     @GetMapping
-    public List<Orden> listaOrden(){
-        return service.listaDeOrden();
+    public ResponseEntity<List<Orden>> listaOrden() {
+        return ResponseEntity.ok(service.listaDeOrden());
     }
 
     //busqueda de orden por ID
@@ -39,6 +39,13 @@ public class OrdenController {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+
+    @GetMapping("/fabricante/{idFabricante}")
+    public ResponseEntity<List<Orden>> buscarPorIdFabricante(@PathVariable String idFabricante) {
+        List<Orden> ordenes = service.buscarPorIdFabricante(idFabricante);
+        return ResponseEntity.ok(ordenes);
     }
 
 

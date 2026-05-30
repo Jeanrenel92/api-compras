@@ -25,6 +25,12 @@ public class OrdenService {
     }
 
 
+
+    //Metodo para el micro servicio inventario
+    public List<Orden> buscarPorIdFabricante(String idFabricante) {
+        return repository.findByIdFabricante(idFabricante);
+    }
+
     //registrar orden
     public Orden ingresarOrden(Orden orden){
         return repository.save(orden);
