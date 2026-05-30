@@ -25,28 +25,26 @@ public class Orden {
     @Column(name = "ID")
     private Long id;
 
-
-    @NotBlank(message = "El Id_Fabricante no puede estar vacio")
+    @NotBlank(message = "El Id_Fabricante no puede estar vacío")
     @Column(name = "ID_FABRICANTE", nullable = false)
     private String idFabricante;
 
-    @NotBlank(message = "El campo cantidad no puede estar vacio,no acepta valor negativo")
+    @NotBlank(message = "El campo cantidad no puede estar vacío, no acepta valor negativo")
+    @Positive(message = "El campo cantidad no acepta valor negativo")
     @Column(name = "CANTIDAD", nullable = false)
-    @Positive
     private Integer unidad;
 
     @NotBlank(message = "El estado debe ser: PENDIENTE, EN_TRANSITO, ADUANA, ENTREGADA")
-    @Pattern(regexp="PENDIENTE|EN_TRANSITO|ADUANA|ENTREGADA")
+    @Pattern(regexp = "PENDIENTE|EN_TRANSITO|ADUANA|ENTREGADA",
+            message = "El estado debe ser: PENDIENTE, EN_TRANSITO, ADUANA, ENTREGADA")
     @Column(name = "ESTADO", nullable = false)
     private String estado;
 
-
-    @NotBlank(message = "Este campo es obligatorio, no puede estar vacio")
-    @Column(name = "FECHA_SOLICITUD")
-    private Date fechaOrden;
-
-    @NotBlank(message = "El nombre del proveedaor no puede estar vacio")
+    @NotBlank(message = "El nombre del proveedor no puede estar vacío")
     @Column(name = "NOMBRE_PROVEEDOR")
     private String nomProveedor;
 
+    @NotBlank(message = "Este campo es obligatorio, no puede estar vacío")
+    @Column(name = "FECHA_SOLICITUD")
+    private Date fechaOrden;
 }
