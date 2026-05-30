@@ -3,10 +3,12 @@ package cl.duoc.api_compras.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.bridge.IMessage;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -24,23 +26,26 @@ public class Orden {
     private Long id;
 
 
+    @NotBlank(message = "El Id_Fabricante no puede estar vacio")
     @Column(name = "ID_FABRICANTE", nullable = false)
     private String idFabricante;
 
+    @NotBlank(message = "El campo cantidad no puede estar vacio,no acepta valor negativo")
     @Column(name = "CANTIDAD", nullable = false)
     @Positive
-    private Integer cantidad;
+    private Integer unidad;
 
-    @NotBlank
+    @NotBlank(message = "El estado debe ser: PENDIENTE, EN_TRANSITO, ADUANA, ENTREGADA")
+    @Pattern(regexp="PENDIENTE|EN_TRANSITO|ADUANA|ENTREGADA")
     @Column(name = "ESTADO", nullable = false)
     private String estado;
 
 
-    @NotBlank
-    @Column(name = "FECHA")
+    @NotBlank(message = "Este campo es obligatorio, no puede estar vacio")
+    @Column(name = "FECHA_SOLICITUD")
     private Date fechaOrden;
 
-    @NotBlank
+    @NotBlank(message = "El nombre del proveedaor no puede estar vacio")
     @Column(name = "NOMBRE_PROVEEDOR")
     private String nomProveedor;
 
