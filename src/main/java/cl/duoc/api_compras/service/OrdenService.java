@@ -1,3 +1,5 @@
+package cl.duoc.api_compras.service;
+
 import cl.duoc.api_compras.model.Orden;
 import cl.duoc.api_compras.repository.OrdenRepository;
 import lombok.AllArgsConstructor;
@@ -11,37 +13,41 @@ import java.util.Optional;
 public class OrdenService {
     private final OrdenRepository repository;
 
-    public List<Orden> listaDeOrden() {
+    //listar todos los ordenes
+    public List<Orden> listaDeOrden(){
         return repository.findAll();
     }
 
-    public Optional<Orden> buscarPorId(Long id) {
+
+    //listar un orden en particular
+    public Optional<Orden> buscarPorId(Long id){
         return repository.findById(id);
     }
 
-    // Método que consume la api inventario
-    public List<Orden> buscarPorIdFabricante(String idFabricante) {
-        return repository.findByIdFabricante(idFabricante);
-    }
 
-    public Orden ingresarOrden(Orden orden) {
+    //registrar orden
+    public Orden ingresarOrden(Orden orden){
         return repository.save(orden);
     }
 
+    //actualizar orden
     public Orden actualizarOrden(Long id, Orden orden) {
         return repository.findById(id)
                 .map(existente -> {
                     orden.setId(id);
                     return repository.save(orden);
                 })
-                .orElseThrow(() -> new RuntimeException("Orden con id=" + id + " no encontrada"));
+                .orElseThrow(() -> new RuntimeException());
     }
 
-    public void eliminarOrden(Long id) {
-        if (repository.existsById(id)) {
+    //eliminar orden
+    public void eliminarOrden(Long id){
+        if (repository.existsById(id)){
             repository.deleteById(id);
-        } else {
-            throw new RuntimeException("Orden con id=" + id + " no encontrada");
+        }else {
+            throw new RuntimeException();
         }
     }
+
+
 }

@@ -30,7 +30,7 @@ public class OrdenController {
     //listarOrden
     @GetMapping
     public List<Orden> listaOrden(){
-        return service.listaDeOrden();
+        return service.
     }
 
     //busqueda de orden por ID
@@ -40,6 +40,8 @@ public class OrdenController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
+
 
     //actualizacion de orden por Id
     @PutMapping("/{id}")
