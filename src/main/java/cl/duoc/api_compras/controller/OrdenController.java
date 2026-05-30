@@ -30,7 +30,7 @@ public class OrdenController {
     //listarOrden
     @GetMapping
     public List<Orden> listaOrden(){
-        return service.
+        return service.listaDeOrden();
     }
 
     //busqueda de orden por ID

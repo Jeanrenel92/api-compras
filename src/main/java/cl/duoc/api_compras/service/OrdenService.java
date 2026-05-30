@@ -37,7 +37,7 @@ public class OrdenService {
                     orden.setId(id);
                     return repository.save(orden);
                 })
-                .orElseThrow(() -> new RuntimeException());
+                .orElseThrow(() -> new RuntimeException("Orden con id=" + id + " no encontrada"));
     }
 
     //eliminar orden
@@ -45,7 +45,7 @@ public class OrdenService {
         if (repository.existsById(id)){
             repository.deleteById(id);
         }else {
-            throw new RuntimeException();
+            throw new RuntimeException("Orden con id=" + id + " no encontrada");
         }
     }
 
