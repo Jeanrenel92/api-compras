@@ -24,7 +24,7 @@ public class OrdenController {
         if (nuevaOrden!=null){
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevaOrden);
         }
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     //listarOrden

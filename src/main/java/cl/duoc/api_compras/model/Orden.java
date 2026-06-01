@@ -3,6 +3,7 @@ package cl.duoc.api_compras.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,6 @@ public class Orden {
     private String idFabricante;
 
 
-    @NotBlank(message = "El campo cantidad no puede estar vacío, no acepta valor negativo")
     @Positive(message = "El campo cantidad no acepta valor negativo")
     @Column(name = "CANTIDAD", nullable = false)
     private Integer unidad;
@@ -49,7 +49,7 @@ public class Orden {
     private String nomProveedor;
 
 
-    @NotBlank(message = "Este campo es obligatorio, no puede estar vacío")
+    @NotNull(message = "Este campo es obligatorio")
     @Column(name = "FECHA_SOLICITUD")
     private Date fechaOrden;
 }

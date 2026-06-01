@@ -33,6 +33,7 @@ public class OrdenService {
 
     //registrar orden
     public Orden ingresarOrden(Orden orden){
+
         return repository.save(orden);
     }
 

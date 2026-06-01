@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface OrdenRepository extends JpaRepository <Orden, Long > {
     List<Orden> findByIdFabricante(String idFabricante); //para buscar por idFabricante
+
+
+    List<Orden> findByIdFabricanteAndEstadoIn(String idFabricante, List<String> estados);
 }
