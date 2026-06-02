@@ -37,7 +37,7 @@ public class OrdenService {
         return repository.save(orden);
     }
 
-    //actualizar orden
+    //actualizar orden de compra
     public Orden actualizarOrden(Long id, Orden orden) {
         return repository.findById(id)
                 .map(existente -> {
@@ -47,7 +47,7 @@ public class OrdenService {
                 .orElseThrow(() -> new RuntimeException("Orden con id=" + id + " no encontrada"));
     }
 
-    //eliminar orden
+    //eliminar orden de compra
     public void eliminarOrden(Long id){
         if (repository.existsById(id)){
             repository.deleteById(id);
