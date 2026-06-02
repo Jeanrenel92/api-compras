@@ -1,4 +1,4 @@
-// Creación de tablas para la api
+// Creación de tablas para la api de compras
 
 DROP TABLE ORDEN_DE_COMPRAS CASCADE CONSTRAINTS;
 
