@@ -6,26 +6,39 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        private ResponseEntity<Object> ResponseEnt(HttpStatus status, String mensaje, WebRequest request) {
+            Map<String, Object> body = new HashMap<>();
+            body.put("timestamp", LocalDateTime.now());
+            body.put("status", status.value());
+            body.put("error", status.getReasonPhrase());
+            body.put("message", mensaje);
+            body.put("URI-RUTA", request.getDescription(false));
 
-        Map<String, String> errores = new HashMap<>();
+            return new ResponseEntity<>(body, status);
+        }
 
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
 
-            String campo = ((FieldError) error).getField();
+        @ExceptionHandler(IllegalArgumentException.class)
+        public ResponseEntity<Object> BadRequest(IllegalArgumentException ex, WebRequest request) {
+            return ResponseEnt(HttpStatus.BAD_REQUEST, ex.getMessage(), request);
+        }
 
-            String mensaje = error.getDefaultMessage();
+        @ExceptionHandler(RuntimeException.class)
+        public ResponseEntity<Object> NotFound(RuntimeException ex, WebRequest request) {
+            return ResponseEnt(HttpStatus.NOT_FOUND, ex.getMessage(), request);
+        }
 
-            errores.put(campo, mensaje);
-        });
 
-        return new ResponseEntity<>(errores, HttpStatus.BAD_REQUEST);
+        @ExceptionHandler(Exception.class)
+        public ResponseEntity<Object> GeneralError(Exception ex, WebRequest request) {
+            return ResponseEnt(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor", request);
+        }
     }
-}
