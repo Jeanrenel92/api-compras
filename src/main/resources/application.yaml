@@ -13,3 +13,7 @@ spring:
     show-sql: true
 server:
   port: 28099
+
+logging:
+  pattern:
+    console: "%d{HH:mm:ss} [%X{traceId}] %-5level %logger{36} - %msg%n"
