@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Object> MalformedJson(HttpMessageNotReadableException ex, WebRequest request) {
-        return ResponseEnt(HttpStatus.BAD_REQUEST, "JSON mal formado o ilegible", request);
+        return ResponseEnt(HttpStatus.BAD_REQUEST, "JSON mal formado u otro error de datos", request);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -73,4 +73,4 @@ public class GlobalExceptionHandler {
         return ResponseEnt(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor", request);
     }
 
-    }
+}

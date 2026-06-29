@@ -39,8 +39,8 @@ public class OrdenController {
 
     //listarOrden
     @GetMapping
-    @Operation(summary = "Listar todas las órdenes", description = "Obtiene todas las órdenes registradas")
-    @ApiResponse(responseCode = "200", description = "Lista obtenida correctamente")
+    @Operation(summary = "Listar órdenes de compra", description = "Retorna todas las órdenes de compra registradas en el sistema, sin filtros")
+    @ApiResponse(responseCode = "200", description = "Lista de órdenes obtenida correctamente")
     public ResponseEntity<List<Orden>> listaOrden() {
         return ResponseEntity.ok(service.listaDeOrden());
     }
@@ -62,14 +62,13 @@ public class OrdenController {
     @Operation(
             summary = "Buscar órdenes por fabricante",
             description = "Obtiene todas las órdenes asociadas a un fabricante")
-    @ApiResponse(responseCode = "200", description = "Órdenes encontradas")
+    @ApiResponse(responseCode = "200", description = "Órdene encontrada")
     public ResponseEntity<List<Orden>> buscarPorIdFabricante(@Parameter(description = "ID del fabricante", example = "FAB001") @PathVariable String idFabricante) {
         List<Orden> ordenes = service.buscarPorIdFabricante(idFabricante);
         return ResponseEntity.ok(ordenes);
     }
 
-
-
+    
     //actualizacion de orden por Id
 
     @PutMapping("/{id}")
