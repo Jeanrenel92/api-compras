@@ -9,7 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +31,7 @@ class OrdenTest {
     }
 
     private Orden ordenValida() {
-        return new Orden(1L, "FAB001", 10, "PENDIENTE", "Proveedor SPA", new Date());
+        return new Orden(1L, "FAB001", 10, "PENDIENTE", "Proveedor SPA", LocalDate.now());
     }
 
     @Test
@@ -99,21 +99,9 @@ class OrdenTest {
     }
 
     @Test
-    void fechaOrden_nula_generaViolacion() {
-        Orden orden = ordenValida();
-        orden.setFechaOrden(null);
-
-        Set<ConstraintViolation<Orden>> violaciones = validator.validate(orden);
-
-        assertFalse(violaciones.isEmpty());
-        assertEquals("Este campo es obligatorio",
-                violaciones.iterator().next().getMessage());
-    }
-
-    @Test
     void gettersYSetters_funcionanCorrectamente() {
         Orden orden = new Orden();
-        Date fecha = new Date();
+        LocalDate fecha = LocalDate.now();
 
         orden.setId(1L);
         orden.setIdFabricante("FAB002");

@@ -48,8 +48,11 @@ public class Orden {
     @Column(name = "NOMBRE_PROVEEDOR")
     private String nomProveedor;
 
+    @Column(name = "FECHA_ORDEN", nullable = false)
+    private LocalDate fechaOrden;
 
-    @NotNull(message = "Este campo es obligatorio")
-    @Column(name = "FECHA_SOLICITUD")
-    private Date fechaOrden;
+    @PrePersist
+    protected void onCreate() {
+        this.fechaOrden = LocalDate.now();
+    }
 }
