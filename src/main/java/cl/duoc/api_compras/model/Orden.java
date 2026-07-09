@@ -1,6 +1,7 @@
 package cl.duoc.api_compras.model;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Orden {
 
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -48,7 +50,9 @@ public class Orden {
     @Column(name = "NOMBRE_PROVEEDOR")
     private String nomProveedor;
 
-    @Column(name = "FECHA_ORDEN", nullable = false)
+
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    @Column(name = "FECHA_SOLICITUD", nullable = false)
     private LocalDate fechaOrden;
 
     @PrePersist

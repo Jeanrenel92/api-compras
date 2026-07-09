@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -90,7 +91,7 @@ class OrdenServiceTest {
 
     @Test
     void Actualizar_Orden_Ok() {
-        Orden ordenActualizada = new Orden(null, "FAB002", 20, "EN_TRANSITO", "Proveedor X", new Date());
+        Orden ordenActualizada = new Orden(null, "FAB002", 20, "EN_TRANSITO", "Proveedor X", LocalDate.now() );
         when(repository.findById(1L)).thenReturn(Optional.of(orden));
         when(repository.save(any(Orden.class))).thenReturn(ordenActualizada);
 

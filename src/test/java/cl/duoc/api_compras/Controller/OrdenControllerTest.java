@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ class OrdenControllerTest {
 
     @BeforeEach
     void setUp() {
-        orden = new Orden(1L, "FAB001", 10, "PENDIENTE", "Proveedor SPA", new Date());
+        orden = new Orden(1L, "FAB001", 10, "PENDIENTE", "Proveedor SPA", LocalDate.now() );
     }
 
     @Test
