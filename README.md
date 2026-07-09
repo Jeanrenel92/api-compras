@@ -132,4 +132,4 @@ Duoc UC.
 
 Autores:
 
-Bayron Cerda / Jean Renel Darius
+Bayron Cerda / Jean Renel Darius / Matias Milanesi
