@@ -32,7 +32,7 @@ class OrdenServiceTest {
 
     @BeforeEach
     void setUp() {
-        orden = new Orden(1L, "FAB001", 10, "PENDIENTE", "Proveedor SPA", new Date());
+        orden = new Orden(1L, "FAB001", 10, "PENDIENTE", "Proveedor SPA", LocalDate.now() );
     }
 
     @Test
